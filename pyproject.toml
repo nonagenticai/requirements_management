@@ -1,0 +1,213 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src" = ""
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[project]
+license = "Apache-2.0"
+name = "requirements-api"
+version = "0.2.0"
+description = "Production-ready FastAPI application for managing software requirements, architecture principles, and design decisions with advanced search, quality scoring, and prioritization"
+authors = [
+    { name = "Requirements API Team", email = "requirements-api@example.com" }
+]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    # Core framework (UPGRADED FIRST - everything depends on these)
+    "pydantic>=2.12.5",
+    "pydantic-settings>=2.14.2",
+    "fastapi>=0.135.1",
+    # ASGI server
+    "uvicorn[standard]>=0.32.0",
+    # Database drivers and ORM - psycopg3 for async
+    "sqlalchemy[asyncio]>=2.0.48",
+    "psycopg[binary,pool]>=3.3.0",
+    "alembic>=1.18.4",
+    # HTTP client
+    "httpx>=0.28.0",
+    # TTL/LRU caches in src/fleet_auth.py (licence-introspection positive and
+    # negative caches + the bounded single-flight lock map). Was transitive via
+    # kag-common until 2026-11-01; declared explicitly now that the surface is
+    # vendored.
+    "cachetools>=5.3.0",
+    # Utilities
+    "python-dotenv>=1.2.2",
+    "python-slugify>=8.0.0",
+    "packaging>=24.0",
+    # Authentication and JWT
+    "PyJWT[crypto]>=2.15.1",
+    "cryptography>=50.0.0",
+    # NLP and semantic search
+    "spacy>=3.8.13",
+    "scikit-learn>=1.6.0",
+    "numpy>=1.26",
+    # Vector similarity search
+    "pgvector>=0.3.0",
+    # OpenTelemetry
+    "structlog>=25.5.0",
+    "opentelemetry-api>=1.45.1",
+    "opentelemetry-sdk>=1.24.0",
+    "opentelemetry-exporter-otlp-proto-http>=1.24.0",
+    "opentelemetry-instrumentation-fastapi>=0.53b1",
+    "opentelemetry-instrumentation-httpx>=0.53b1",
+    "opentelemetry-instrumentation-sqlalchemy>=0.53b1",
+    # Prometheus. src/metrics.py imports it DIRECTLY (and it used to reach the
+    # venv only transitively via kag-common), so it is declared here rather than
+    # relied on by accident.
+    "prometheus-client>=0.20.0",
+
+    # ==================================================================================
+    # SpaCy Model Installation:
+    # ==================================================================================
+    # The en_core_web_sm model cannot be installed via uv/pip as a URL dependency
+    # in Docker builds due to network restrictions during the build process.
+    #
+    # For local development:
+    #   uv run python -m spacy download en_core_web_sm
+    #
+    # For Docker/Production:
+    #   The Dockerfile includes: RUN uv run python -m spacy download en_core_web_sm
+    #   This runs after the main dependency installation step.
+    #
+    # Alternative for local development (if network allows):
+    #   Uncomment the line below to install via URL dependency:
+    "en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl",
+    # ==================================================================================
+    # Security fixes
+    "urllib3>=2.8.0",  # CVE-2026-44431, CVE-2026-44432 fixed in 2.7.0
+    "werkzeug>=3.1.9",
+    "protobuf>=6.33.5",
+    # Open Group exchange-format import/export: hardened parser + XSD validation.
+    "lxml>=6.1.3",
+    # PNG rasterisation of rendered diagrams (tools/rendering/png.py). MIT, pure wheels.
+    "resvg-py>=0.5.0",
+    # Vector PDF of rendered diagrams (tools/rendering/pdf.py). cairosvg draws SVG markers
+    # (relationship arrowheads), which svglib does not; it needs libcairo2 at runtime
+    # (Dockerfile production stage). pypdf assembles the multi-page whole-model PDF.
+    "cairosvg>=2.9.1",
+    "pypdf>=6.21.4",
+]
+
+[project.optional-dependencies]
+contract = [
+    "schemathesis>=3.36.0",
+]
+
+[dependency-groups]
+dev = [
+    "detect-secrets>=1.5.0",
+    "ty>=0.0.24",
+    "ruff>=0.15.7",
+    "pytest>=9.0.2",
+    "pytest-asyncio>=1.3.0",
+    "pytest-timeout>=2.4.0",
+    "pytest-mock>=3.15.1",
+    "pytest-xdist>=3.6.0",
+]
+
+[tool.pytest.ini_options]
+# "." is REQUIRED by the `-p tests.plugins.route_coverage` in addopts below, and
+# pytest will not start without it. Measured, not assumed:
+#
+#   * `Config._preparse` runs `_configure_python_path()` (which applies THIS ini
+#     key) at line 1575 of _pytest/config/__init__.py, and `consider_preparse()`
+#     — which imports every `-p` plugin — at 1576. So this key lands first.
+#   * The rootdir otherwise reaches `sys.path` only when `tests/conftest.py` is
+#     imported, in `pytest_load_initial_conftests` at line 1605 — thirty lines too
+#     late. Simulated with the real venv (console-script `sys.path`, no rootdir):
+#     `import tests.plugins.route_coverage` -> ModuleNotFoundError. `-p` turns
+#     that into a hard `ImportError: Error importing plugin` and pytest never runs.
+#
+# "src" stays FIRST so nothing at the repo root can shadow a service module. The
+# root's `alembic/`, `scripts/` and `docs/` carry no `__init__.py`, so they are
+# namespace portions only and the import scan continues past them — verified that
+# `import alembic` still resolves to site-packages with both entries present.
+pythonpath = ["src", "."]
+asyncio_mode = "auto"
+# The `integration` marker used to be deselected here. It is NOT any more, and
+# tests/test_integration_suite_can_fail.py fails if it comes back.
+#
+# Those 86 tests had therefore never run in CI. Run against `main` at ab51ac0
+# they reported 7 passed / 39 failed / 40 skipped — the 7 being test_health.py,
+# whose endpoints are auth-exempt. Every failure and every skip was the same
+# `403 license_invalid` from a hardcoded, dead licence token. They now run
+# in-process against `main.app` (tests/integration/conftest.py), so they need
+# only the Postgres the archetype already provides.
+#
+# `-p tests.plugins.route_coverage` is LOAD-BEARING, not decoration. That plugin
+# installs its recorder at IMPORT time, and `-p` is the only registration that
+# happens early enough: pytest imports `-p` plugins during `Config._preparse`,
+# before conftests load and therefore before `from main import app` constructs a
+# single APIRoute. A conftest-level `pytest_plugins` entry would land too late and
+# the recorder would wrap nothing.
+#
+# It shipped WITHOUT this line, so the instrument had never taken a reading: no
+# `hits-*.json` was ever written, and the allowlist it feeds is still the
+# placeholder `{"floor": 0, "uncovered": []}`, which cannot fail. The plugin's own
+# `pytest_sessionfinish` now prints `ROUTE_COVERAGE_READING …` on every run and
+# fails the session when `ROUTE_COVERAGE_ENFORCE=1` and the run is unfiltered —
+# see that module's docstring for the full condition list and its limits.
+addopts = "-v -p tests.plugins.route_coverage"
+# Charge the per-test timeout to the TEST BODY only, not to fixture setup.
+#
+# pytest-timeout defaults to `func_only = False`, i.e. the clock covers fixture
+# setup/teardown too, and a SESSION-scoped fixture's setup is billed entirely to
+# whichever test happens to request it first. This suite has two large one-time
+# per-worker costs that are not "a slow test":
+#   * `test_engine` — 3x CREATE EXTENSION + ~60 DROP TABLE + create_all over ~60
+#     tables and their indexes: hundreds of round trips.
+#   * the spaCy pipeline import in tests/conftest.py (~5.3s cold).
+# Under `-n auto` EVERY worker pays both, and each worker charges them to its own
+# first test. Measured against the local docker Postgres while the dev box was
+# contended (12 ms/round-trip): `test_create_programme` alone reported
+# `121.10s setup` and died on `Failed: Timeout (>60.0s)` — in setup, having never
+# executed a line of the test.
+#
+# This does not weaken the hang protection that the hook's `--timeout=60` is for:
+# a hung TEST still trips it, and a hang anywhere else is still caught by the
+# pre-push hook's overall wall-clock budget (PREPUSH_TEST_TIMEOUT, default 1200s)
+# and by the archetype's `test_timeout_minutes: 150` in CI. It only stops a fixed,
+# one-time bootstrap from being misreported as a slow test.
+timeout_func_only = true
+markers = [
+    "security: Security-related tests",
+    "bola: Broken Object Level Authorization tests",
+    "tenant_isolation: Multi-tenant isolation tests",
+    "integration: Integration tests that hit live services in the cluster",
+    "tokenless: send headers as-is (no test licence minted from a plain X-Tenant-Id)",
+]
+
+[tool.coverage.run]
+concurrency = ["greenlet", "thread"]
+
+[tool.coverage.report]
+fail_under = 85
+
+[tool.ty.environment]
+python-version = "3.14"
+
+[tool.ty.rules]
+unresolved-import = "ignore"
+
+[tool.ty.src]
+exclude = ["**/alembic/**"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["E402"]

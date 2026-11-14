@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="native-model">
+  <name xml:lang="en">Native</name>
+  <documentation xml:lang="en">model purpose</documentation>
+  <properties>
+    <property propertyDefinitionRef="propid-2">
+      <value xml:lang="en">mv</value>
+    </property>
+  </properties>
+  <elements>
+    <element identifier="e-role" xsi:type="BusinessRole">
+      <name xml:lang="en">Role</name>
+    </element>
+    <element identifier="e-actor" xsi:type="BusinessActor">
+      <name xml:lang="en">Actor</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="en">v</value>
+        </property>
+        <property propertyDefinitionRef="specialization">
+          <value xml:lang="en">Special</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="j1" xsi:type="OrJunction">
+      <name xml:lang="en" />
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="r-as" source="e-actor" target="e-role" xsi:type="Assignment">
+      <name xml:lang="en">assigned</name>
+    </relationship>
+    <relationship identifier="r-j" source="e-role" target="j1" xsi:type="Association" />
+  </relationships>
+  <organizations>
+    <item>
+      <label xml:lang="en">Business</label>
+      <item>
+        <label xml:lang="en">Sub</label>
+        <documentation xml:lang="en">sub doc</documentation>
+        <item identifierRef="e-actor" />
+      </item>
+      <item identifierRef="e-role" />
+    </item>
+    <item>
+      <label xml:lang="en">Relations</label>
+      <item identifierRef="r-as" />
+      <item identifierRef="r-j" />
+    </item>
+    <item>
+      <label xml:lang="en">Other</label>
+      <item identifierRef="j1" />
+    </item>
+    <item>
+      <label xml:lang="en">Views</label>
+      <item identifierRef="v1" />
+      <item identifierRef="v2" />
+    </item>
+  </organizations>
+  <propertyDefinitions>
+    <propertyDefinition identifier="specialization" type="string">
+      <name>Specialization</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-2" type="string">
+      <name>model-prop</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-1" type="string">
+      <name>p</name>
+    </propertyDefinition>
+  </propertyDefinitions>
+  <views>
+    <diagrams>
+      <view identifier="v1" xsi:type="Diagram" viewpoint="Layered">
+        <name xml:lang="en">V</name>
+        <node identifier="g1" x="10" y="10" w="500" h="300" xsi:type="Container">
+          <label xml:lang="en">Group</label>
+          <documentation xml:lang="en">group doc</documentation>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="d-actor" elementRef="e-actor" xsi:type="Element" x="30" y="40" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="d-role" elementRef="e-role" xsi:type="Element" x="260" y="40" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="d-j" elementRef="j1" xsi:type="Element" x="310" y="160" w="15" h="15">
+            <style>
+              <fillColor r="0" g="0" b="0" a="100" />
+              <lineColor r="0" g="0" b="0" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="n1" xsi:type="Label" x="600" y="10" w="185" h="80">
+          <label xml:lang="en">a note
+two lines</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="ref1" xsi:type="Label" x="600" y="200" w="120" h="55">
+          <label xml:lang="en">V2</label>
+          <style>
+            <fillColor r="220" g="235" b="235" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <viewRef ref="v2" />
+        </node>
+        <connection identifier="c-as" relationshipRef="r-as" xsi:type="Relationship" source="d-actor" target="d-role">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="c-j" relationshipRef="r-j" xsi:type="Relationship" source="d-role" target="d-j">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="c-note" xsi:type="Line" source="n1" target="d-actor">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+      <view identifier="v2" xsi:type="Diagram">
+        <name xml:lang="en">V2</name>
+      </view>
+    </diagrams>
+  </views>
+</model>

@@ -1,0 +1,78 @@
+{
+  "profile_id": "uml-2.5.1-p1",
+  "ruleset_id": "uml-2.5.1-p1",
+  "language_version": "2.5.1",
+  "reference": {
+    "tool": "OMG UML",
+    "version": "2.5.1",
+    "url": "https://www.omg.org/spec/UML/2.5.1"
+  },
+  "element_kinds": [
+    "package",
+    "class",
+    "interface",
+    "data_type",
+    "enumeration",
+    "primitive_type",
+    "component",
+    "port",
+    "actor"
+  ],
+  "element_features": {
+    "package": [],
+    "class": ["properties", "operations", "is_abstract"],
+    "interface": ["properties", "operations", "is_abstract"],
+    "data_type": ["properties", "operations", "is_abstract"],
+    "enumeration": ["properties", "operations", "literals"],
+    "primitive_type": [],
+    "component": ["properties", "operations", "is_abstract", "provided", "required"],
+    "port": ["provided", "required"],
+    "actor": ["is_abstract"]
+  },
+  "owner_kinds": {
+    "package": ["package"],
+    "class": ["package"],
+    "interface": ["package"],
+    "data_type": ["package"],
+    "enumeration": ["package"],
+    "primitive_type": ["package"],
+    "component": ["package"],
+    "port": ["class", "component"],
+    "actor": ["package"]
+  },
+  "owner_required": ["port"],
+  "interaction_owner_kinds": ["package", "class", "component", "actor"],
+  "relationship_kinds": [
+    "association",
+    "generalization",
+    "interface_realization",
+    "realization",
+    "dependency",
+    "usage",
+    "connector"
+  ],
+  "aggregation_kinds": ["none", "shared", "composite"],
+  "connector_kinds": ["assembly", "delegation"],
+  "visibilities": ["public", "private", "protected", "package"],
+  "parameter_directions": ["in", "out", "inout", "return"],
+  "generalization_compatible": {
+    "class": ["class"],
+    "component": ["component", "class"],
+    "interface": ["interface"],
+    "data_type": ["data_type"],
+    "enumeration": ["enumeration", "data_type"],
+    "primitive_type": ["primitive_type", "data_type"],
+    "actor": ["actor"]
+  },
+  "lifeline_type_kinds": ["class", "component", "interface", "actor"],
+  "message_kinds": ["synch_call", "asynch_call", "asynch_signal", "reply", "create", "delete"],
+  "synchronous_message_kinds": ["synch_call"],
+  "fragment_operators": ["alt", "opt", "loop", "par", "break"],
+  "guarded_operators": ["alt", "opt", "loop"],
+  "single_operand_operators": ["opt", "loop", "break"],
+  "diagram_kinds": {
+    "class": {"object": "element", "connection": "relationship"},
+    "component": {"object": "element", "connection": "relationship"},
+    "sequence": {"object": "lifeline", "connection": "message"}
+  }
+}

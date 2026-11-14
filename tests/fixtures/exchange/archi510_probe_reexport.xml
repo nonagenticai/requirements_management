@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="probe">
+  <name>Probe</name>
+  <elements>
+    <element identifier="n-uni" xsi:type="BusinessObject">
+      <name>Ünïcödé → &#x1f600; &lt;&amp;&gt; "q" 'a'</name>
+      <documentation>crlf&#xD;
+line	tab  end</documentation>
+    </element>
+    <element identifier="n-empty" xsi:type="BusinessService">
+      <name />
+    </element>
+    <element identifier="n-ws" xsi:type="BusinessActor">
+      <name>two spaces and tab</name>
+    </element>
+    <element identifier="n-nl" xsi:type="BusinessRole">
+      <name>line one line two</name>
+    </element>
+    <element identifier="n-prop" xsi:type="Node">
+      <name>P</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value>v multi</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="n-jname" xsi:type="OrJunction">
+      <name>named junction</name>
+      <documentation>jdoc</documentation>
+    </element>
+    <element identifier="n-deep1" xsi:type="Location">
+      <name>L1</name>
+    </element>
+    <element identifier="n-deep2" xsi:type="Location">
+      <name>L2</name>
+    </element>
+    <element identifier="n-deep3" xsi:type="Location">
+      <name>L3</name>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="r-agg" source="n-deep1" target="n-deep2" xsi:type="Aggregation" />
+    <relationship identifier="r-rr" source="r-inf" target="r-agg" xsi:type="Association">
+      <name>rel to rel</name>
+    </relationship>
+    <relationship identifier="r-j" source="n-ws" target="n-jname" xsi:type="Association" />
+    <relationship identifier="r-inf" source="n-deep1" target="n-deep2" xsi:type="Influence" modifier="+/- custom" />
+  </relationships>
+  <organizations>
+    <item>
+      <label>Business</label>
+      <item>
+        <label>Probe folders</label>
+        <documentation>root doc</documentation>
+        <item>
+          <label>Nested</label>
+          <item identifierRef="n-nl" />
+        </item>
+        <item identifierRef="n-ws" />
+      </item>
+      <item identifierRef="n-uni" />
+      <item identifierRef="n-empty" />
+    </item>
+    <item>
+      <label>Technology &amp; Physical</label>
+      <item identifierRef="n-prop" />
+    </item>
+    <item>
+      <label>Other</label>
+      <item identifierRef="n-jname" />
+      <item identifierRef="n-deep1" />
+      <item identifierRef="n-deep2" />
+      <item identifierRef="n-deep3" />
+    </item>
+    <item>
+      <label>Relations</label>
+      <item>
+        <label>Probe folders</label>
+        <documentation>root doc</documentation>
+        <item>
+          <label>Nested</label>
+          <item identifierRef="r-inf" />
+        </item>
+      </item>
+      <item identifierRef="r-agg" />
+      <item identifierRef="r-rr" />
+      <item identifierRef="r-j" />
+    </item>
+    <item>
+      <label>Views</label>
+      <item>
+        <label>Probe folders</label>
+        <documentation>root doc</documentation>
+        <item>
+          <label>Nested</label>
+          <item>
+            <label>Deeper</label>
+            <item identifierRef="v-probe" />
+          </item>
+        </item>
+      </item>
+      <item identifierRef="vp-0" />
+      <item identifierRef="vp-1" />
+      <item identifierRef="vp-2" />
+      <item identifierRef="vp-3" />
+      <item identifierRef="vp-4" />
+      <item identifierRef="vp-5" />
+      <item identifierRef="vp-6" />
+      <item identifierRef="vp-7" />
+      <item identifierRef="vp-8" />
+      <item identifierRef="vp-9" />
+      <item identifierRef="vp-10" />
+      <item identifierRef="vp-11" />
+      <item identifierRef="vp-12" />
+      <item identifierRef="vp-13" />
+      <item identifierRef="vp-14" />
+      <item identifierRef="vp-15" />
+      <item identifierRef="vp-16" />
+      <item identifierRef="vp-17" />
+      <item identifierRef="vp-18" />
+      <item identifierRef="vp-19" />
+      <item identifierRef="vp-20" />
+      <item identifierRef="vp-21" />
+      <item identifierRef="vp-22" />
+      <item identifierRef="vp-23" />
+      <item identifierRef="vp-24" />
+    </item>
+  </organizations>
+  <propertyDefinitions>
+    <propertyDefinition identifier="propid-2" type="string">
+      <name />
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-4" type="string">
+      <name>archi:borderType</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-1" type="string">
+      <name>k</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-3" type="string">
+      <name>k sp/é</name>
+    </propertyDefinition>
+  </propertyDefinitions>
+  <views>
+    <diagrams>
+      <view identifier="v-probe" xsi:type="Diagram">
+        <name>Probe view</name>
+        <properties>
+          <property propertyDefinitionRef="propid-1">
+            <value>view</value>
+          </property>
+          <property propertyDefinitionRef="propid-4">
+            <value>o-note2=none</value>
+          </property>
+          <property propertyDefinitionRef="propid-4">
+            <value>o-grp2=tabbed</value>
+          </property>
+        </properties>
+        <node identifier="o1" elementRef="n-deep1" xsi:type="Element" x="5" y="5" w="600" h="400">
+          <style>
+            <fillColor r="237" g="207" b="226" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="1" g="2" b="3" />
+            </font>
+          </style>
+          <node identifier="o2" elementRef="n-deep2" xsi:type="Element" x="15" y="35" w="400" h="300">
+            <style>
+              <fillColor r="237" g="207" b="226" a="100" />
+              <lineColor r="171" g="205" b="239" a="30" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="o3" elementRef="n-deep3" xsi:type="Element" x="30" y="70" w="200" h="100">
+              <style>
+                <fillColor r="0" g="0" b="0" a="0" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="14" style="bold italic">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+              <node identifier="o4" elementRef="n-ws" xsi:type="Element" x="31" y="72" w="50" h="40">
+                <style>
+                  <fillColor r="255" g="255" b="181" a="100" />
+                  <lineColor r="0" g="255" b="0" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node identifier="o5" elementRef="n-jname" xsi:type="Element" x="700" y="10" w="15" h="15">
+          <style>
+            <fillColor r="0" g="0" b="0" a="100" />
+            <lineColor r="0" g="0" b="0" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="o6" elementRef="n-uni" xsi:type="Element" x="700" y="100" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="o-note2" xsi:type="Label" x="900" y="10" w="185" h="80">
+          <label>probe note</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="o-grp2" x="900" y="200" w="200" h="150" xsi:type="Container">
+          <label>G2</label>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="o7" elementRef="n-empty" xsi:type="Element" x="920" y="240" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <connection identifier="c-rr" relationshipRef="r-rr" xsi:type="Relationship" source="c-inf" target="c-agg">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="c-j" relationshipRef="r-j" xsi:type="Relationship" source="o4" target="o5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="l-ne" xsi:type="Line" source="o-note2" target="o6">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="l-gn" xsi:type="Line" source="o-grp2" target="o-note2">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+      <view identifier="vp-0" xsi:type="Diagram" viewpoint="Organization">
+        <name>VP organization</name>
+      </view>
+      <view identifier="vp-1" xsi:type="Diagram" viewpoint="Business Process Cooperation">
+        <name>VP business_process_cooperation</name>
+      </view>
+      <view identifier="vp-2" xsi:type="Diagram" viewpoint="Product">
+        <name>VP product</name>
+      </view>
+      <view identifier="vp-3" xsi:type="Diagram" viewpoint="Application Cooperation">
+        <name>VP application_cooperation</name>
+      </view>
+      <view identifier="vp-4" xsi:type="Diagram" viewpoint="Application Structure">
+        <name>VP application_structure</name>
+      </view>
+      <view identifier="vp-5" xsi:type="Diagram" viewpoint="Application Usage">
+        <name>VP application_usage</name>
+      </view>
+      <view identifier="vp-6" xsi:type="Diagram" viewpoint="Implementation and Deployment">
+        <name>VP implementation_deployment</name>
+      </view>
+      <view identifier="vp-7" xsi:type="Diagram" viewpoint="Technology">
+        <name>VP technology</name>
+      </view>
+      <view identifier="vp-8" xsi:type="Diagram" viewpoint="Technology Usage">
+        <name>VP technology_usage</name>
+      </view>
+      <view identifier="vp-9" xsi:type="Diagram" viewpoint="Information Structure">
+        <name>VP information_structure</name>
+      </view>
+      <view identifier="vp-10" xsi:type="Diagram" viewpoint="Service Realization">
+        <name>VP service_realization</name>
+      </view>
+      <view identifier="vp-11" xsi:type="Diagram" viewpoint="Physical">
+        <name>VP physical</name>
+      </view>
+      <view identifier="vp-12" xsi:type="Diagram" viewpoint="Stakeholder">
+        <name>VP stakeholder</name>
+      </view>
+      <view identifier="vp-13" xsi:type="Diagram" viewpoint="Goal Realization">
+        <name>VP goal_realization</name>
+      </view>
+      <view identifier="vp-14" xsi:type="Diagram" viewpoint="Requirements Realization">
+        <name>VP requirements_realization</name>
+      </view>
+      <view identifier="vp-15" xsi:type="Diagram" viewpoint="Motivation">
+        <name>VP motivation</name>
+      </view>
+      <view identifier="vp-16" xsi:type="Diagram" viewpoint="Strategy">
+        <name>VP strategy</name>
+      </view>
+      <view identifier="vp-17" xsi:type="Diagram" viewpoint="Capability Map">
+        <name>VP capability</name>
+      </view>
+      <view identifier="vp-18" xsi:type="Diagram" viewpoint="Value Stream">
+        <name>VP value_stream</name>
+      </view>
+      <view identifier="vp-19" xsi:type="Diagram" viewpoint="Outcome Realization">
+        <name>VP outcome_realization</name>
+      </view>
+      <view identifier="vp-20" xsi:type="Diagram" viewpoint="Resource Map">
+        <name>VP resource</name>
+      </view>
+      <view identifier="vp-21" xsi:type="Diagram" viewpoint="Project">
+        <name>VP project</name>
+      </view>
+      <view identifier="vp-22" xsi:type="Diagram" viewpoint="Migration">
+        <name>VP migration</name>
+      </view>
+      <view identifier="vp-23" xsi:type="Diagram" viewpoint="Implementation and Migration">
+        <name>VP implementation_migration</name>
+      </view>
+      <view identifier="vp-24" xsi:type="Diagram" viewpoint="Layered">
+        <name>VP layered</name>
+      </view>
+    </diagrams>
+  </views>
+</model>

@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="m-1">
+  <name>Full</name>
+  <documentation>all of it</documentation>
+  <elements>
+    <element identifier="c-resource" xsi:type="Resource">
+      <name>resource One</name>
+      <documentation>doc of resource
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-capability" xsi:type="Capability">
+      <name>capability One</name>
+      <documentation>doc of capability
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-value_stream" xsi:type="ValueStream">
+      <name>value_stream One</name>
+      <documentation>doc of value_stream
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-course_of_action" xsi:type="CourseOfAction">
+      <name>course_of_action One</name>
+      <documentation>doc of course_of_action
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-business_actor" xsi:type="BusinessActor">
+      <name>business_actor One</name>
+      <documentation>doc of business_actor
+  preserved  whitespace</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value>team-a</value>
+        </property>
+        <property propertyDefinitionRef="propid-2">
+          <value>10</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value>team-b</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="c-business_role" xsi:type="BusinessRole">
+      <name>business_role One</name>
+      <documentation>doc of business_role
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-business_collaboration" xsi:type="BusinessCollaboration">
+      <name>business_collaboration One</name>
+      <documentation>doc of business_collaboration
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-business_interface" xsi:type="BusinessInterface">
+      <name>business_interface One</name>
+      <documentation>doc of business_interface
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-business_process" xsi:type="BusinessProcess">
+      <name>business_process One</name>
+      <documentation>doc of business_process
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-business_function" xsi:type="BusinessFunction">
+      <name>business_function One</name>
+      <documentation>doc of business_function
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-business_interaction" xsi:type="BusinessInteraction">
+      <name>business_interaction One</name>
+      <documentation>doc of business_interaction
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-business_event" xsi:type="BusinessEvent">
+      <name>business_event One</name>
+      <documentation>doc of business_event
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-business_service" xsi:type="BusinessService">
+      <name>business_service One</name>
+      <documentation>doc of business_service
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-business_object" xsi:type="BusinessObject">
+      <name>business_object One</name>
+      <documentation>doc of business_object
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-contract" xsi:type="Contract">
+      <name>contract One</name>
+      <documentation>doc of contract
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-representation" xsi:type="Representation">
+      <name>representation One</name>
+      <documentation>doc of representation
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-product" xsi:type="Product">
+      <name>product One</name>
+      <documentation>doc of product
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-application_component" xsi:type="ApplicationComponent">
+      <name>application_component One</name>
+      <documentation>doc of application_component
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-application_collaboration" xsi:type="ApplicationCollaboration">
+      <name>application_collaboration One</name>
+      <documentation>doc of application_collaboration
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-application_interface" xsi:type="ApplicationInterface">
+      <name>application_interface One</name>
+      <documentation>doc of application_interface
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-application_function" xsi:type="ApplicationFunction">
+      <name>application_function One</name>
+      <documentation>doc of application_function
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-application_interaction" xsi:type="ApplicationInteraction">
+      <name>application_interaction One</name>
+      <documentation>doc of application_interaction
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-application_process" xsi:type="ApplicationProcess">
+      <name>application_process One</name>
+      <documentation>doc of application_process
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-application_event" xsi:type="ApplicationEvent">
+      <name>application_event One</name>
+      <documentation>doc of application_event
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-application_service" xsi:type="ApplicationService">
+      <name>application_service One</name>
+      <documentation>doc of application_service
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-data_object" xsi:type="DataObject">
+      <name>data_object One</name>
+      <documentation>doc of data_object
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-node" xsi:type="Node">
+      <name>node One</name>
+      <documentation>doc of node
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-device" xsi:type="Device">
+      <name>device One</name>
+      <documentation>doc of device
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-system_software" xsi:type="SystemSoftware">
+      <name>system_software One</name>
+      <documentation>doc of system_software
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-technology_collaboration" xsi:type="TechnologyCollaboration">
+      <name>technology_collaboration One</name>
+      <documentation>doc of technology_collaboration
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-technology_interface" xsi:type="TechnologyInterface">
+      <name>technology_interface One</name>
+      <documentation>doc of technology_interface
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-path" xsi:type="Path">
+      <name>path One</name>
+      <documentation>doc of path
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-communication_network" xsi:type="CommunicationNetwork">
+      <name>communication_network One</name>
+      <documentation>doc of communication_network
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-technology_function" xsi:type="TechnologyFunction">
+      <name>technology_function One</name>
+      <documentation>doc of technology_function
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-technology_process" xsi:type="TechnologyProcess">
+      <name>technology_process One</name>
+      <documentation>doc of technology_process
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-technology_interaction" xsi:type="TechnologyInteraction">
+      <name>technology_interaction One</name>
+      <documentation>doc of technology_interaction
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-technology_event" xsi:type="TechnologyEvent">
+      <name>technology_event One</name>
+      <documentation>doc of technology_event
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-technology_service" xsi:type="TechnologyService">
+      <name>technology_service One</name>
+      <documentation>doc of technology_service
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-artifact" xsi:type="Artifact">
+      <name>artifact One</name>
+      <documentation>doc of artifact
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-equipment" xsi:type="Equipment">
+      <name>equipment One</name>
+      <documentation>doc of equipment
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-facility" xsi:type="Facility">
+      <name>facility One</name>
+      <documentation>doc of facility
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-distribution_network" xsi:type="DistributionNetwork">
+      <name>distribution_network One</name>
+      <documentation>doc of distribution_network
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-material" xsi:type="Material">
+      <name>material One</name>
+      <documentation>doc of material
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-stakeholder" xsi:type="Stakeholder">
+      <name>stakeholder One</name>
+      <documentation>doc of stakeholder
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-driver" xsi:type="Driver">
+      <name>driver One</name>
+      <documentation>doc of driver
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-assessment" xsi:type="Assessment">
+      <name>assessment One</name>
+      <documentation>doc of assessment
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-goal" xsi:type="Goal">
+      <name>goal One</name>
+      <documentation>doc of goal
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-outcome" xsi:type="Outcome">
+      <name>outcome One</name>
+      <documentation>doc of outcome
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-principle" xsi:type="Principle">
+      <name>principle One</name>
+      <documentation>doc of principle
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-requirement" xsi:type="Requirement">
+      <name>requirement One</name>
+      <documentation>doc of requirement
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-constraint" xsi:type="Constraint">
+      <name>constraint One</name>
+      <documentation>doc of constraint
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-meaning" xsi:type="Meaning">
+      <name>meaning One</name>
+      <documentation>doc of meaning
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-value" xsi:type="Value">
+      <name>value One</name>
+      <documentation>doc of value
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-work_package" xsi:type="WorkPackage">
+      <name>work_package One</name>
+      <documentation>doc of work_package
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-deliverable" xsi:type="Deliverable">
+      <name>deliverable One</name>
+      <documentation>doc of deliverable
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-implementation_event" xsi:type="ImplementationEvent">
+      <name>implementation_event One</name>
+      <documentation>doc of implementation_event
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-plateau" xsi:type="Plateau">
+      <name>plateau One</name>
+      <documentation>doc of plateau
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-gap" xsi:type="Gap">
+      <name>gap One</name>
+      <documentation>doc of gap
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-location" xsi:type="Location">
+      <name>location One</name>
+      <documentation>doc of location
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="c-grouping" xsi:type="Grouping">
+      <name>grouping One</name>
+      <documentation>doc of grouping
+  preserved  whitespace</documentation>
+    </element>
+    <element identifier="j-and" xsi:type="AndJunction">
+      <name />
+    </element>
+    <element identifier="j-or" xsi:type="OrJunction">
+      <name />
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="r-access" source="c-business_actor" target="c-business_object" xsi:type="Access" accessType="Write">
+      <name>access rel</name>
+      <documentation>access documentation</documentation>
+    </relationship>
+    <relationship identifier="r-composition" source="c-resource" target="c-resource" xsi:type="Composition">
+      <name>composition rel</name>
+      <documentation>composition documentation</documentation>
+    </relationship>
+    <relationship identifier="r-flow" source="c-resource" target="c-resource" xsi:type="Flow">
+      <name>flow rel</name>
+      <documentation>flow documentation</documentation>
+    </relationship>
+    <relationship identifier="r-aggregation" source="c-resource" target="c-resource" xsi:type="Aggregation">
+      <name>aggregation rel</name>
+      <documentation>aggregation documentation</documentation>
+    </relationship>
+    <relationship identifier="r-assignment" source="c-resource" target="c-capability" xsi:type="Assignment">
+      <name>assignment rel</name>
+      <documentation>assignment documentation</documentation>
+    </relationship>
+    <relationship identifier="r-influence" source="c-resource" target="c-stakeholder" xsi:type="Influence" modifier="++">
+      <name>influence rel</name>
+      <documentation>influence documentation</documentation>
+    </relationship>
+    <relationship identifier="r-association" source="c-resource" target="c-resource" xsi:type="Association" isDirected="true">
+      <name>association rel</name>
+      <documentation>association documentation</documentation>
+    </relationship>
+    <relationship identifier="r-realization" source="c-resource" target="c-course_of_action" xsi:type="Realization">
+      <name>realization rel</name>
+      <documentation>realization documentation</documentation>
+    </relationship>
+    <relationship identifier="r-specialization" source="c-resource" target="c-resource" xsi:type="Specialization">
+      <name>specialization rel</name>
+      <documentation>specialization documentation</documentation>
+    </relationship>
+    <relationship identifier="r-triggering" source="c-resource" target="c-resource" xsi:type="Triggering">
+      <name>triggering rel</name>
+      <documentation>triggering documentation</documentation>
+    </relationship>
+    <relationship identifier="r-serving" source="c-resource" target="c-resource" xsi:type="Serving">
+      <name>serving rel</name>
+      <documentation>serving documentation</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>3</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="r-access-read" source="c-business_actor" target="c-business_object" xsi:type="Access" accessType="Read" />
+    <relationship identifier="r-access-access" source="c-business_actor" target="c-business_object" xsi:type="Access" accessType="Access" />
+    <relationship identifier="r-access-readwrite" source="c-business_actor" target="c-business_object" xsi:type="Access" accessType="ReadWrite" />
+    <relationship identifier="r-assoc-undirected" source="c-resource" target="c-resource" xsi:type="Association" />
+    <relationship identifier="r-influence-5" source="c-resource" target="c-stakeholder" xsi:type="Influence" modifier="5" />
+    <relationship identifier="r-j1" source="c-business_process" target="j-and" xsi:type="Triggering" />
+    <relationship identifier="r-j2" source="j-and" target="c-business_event" xsi:type="Triggering" />
+    <relationship identifier="r-j3" source="c-business_function" target="j-or" xsi:type="Flow" />
+    <relationship identifier="r-j4" source="j-or" target="c-business_process" xsi:type="Flow" />
+    <relationship identifier="r-to-rel" source="c-business_actor" target="r-serving" xsi:type="Association" />
+    <relationship identifier="r-grp-rel" source="c-grouping" target="r-serving" xsi:type="Aggregation" />
+  </relationships>
+  <organizations>
+    <item>
+      <label>Strategy</label>
+      <item identifierRef="c-resource" />
+      <item identifierRef="c-capability" />
+      <item identifierRef="c-value_stream" />
+      <item identifierRef="c-course_of_action" />
+    </item>
+    <item>
+      <label>Business</label>
+      <item identifierRef="c-business_actor" />
+      <item identifierRef="c-business_role" />
+      <item identifierRef="c-business_collaboration" />
+      <item identifierRef="c-business_interface" />
+      <item identifierRef="c-business_process" />
+      <item identifierRef="c-business_function" />
+      <item identifierRef="c-business_interaction" />
+      <item identifierRef="c-business_event" />
+      <item identifierRef="c-business_service" />
+      <item identifierRef="c-business_object" />
+      <item identifierRef="c-contract" />
+      <item identifierRef="c-representation" />
+      <item identifierRef="c-product" />
+    </item>
+    <item>
+      <label>Application</label>
+      <item identifierRef="c-application_component" />
+      <item identifierRef="c-application_collaboration" />
+      <item identifierRef="c-application_interface" />
+      <item identifierRef="c-application_function" />
+      <item identifierRef="c-application_interaction" />
+      <item identifierRef="c-application_process" />
+      <item identifierRef="c-application_event" />
+      <item identifierRef="c-application_service" />
+      <item identifierRef="c-data_object" />
+    </item>
+    <item>
+      <label>Technology &amp; Physical</label>
+      <item identifierRef="c-node" />
+      <item identifierRef="c-device" />
+      <item identifierRef="c-system_software" />
+      <item identifierRef="c-technology_collaboration" />
+      <item identifierRef="c-technology_interface" />
+      <item identifierRef="c-path" />
+      <item identifierRef="c-communication_network" />
+      <item identifierRef="c-technology_function" />
+      <item identifierRef="c-technology_process" />
+      <item identifierRef="c-technology_interaction" />
+      <item identifierRef="c-technology_event" />
+      <item identifierRef="c-technology_service" />
+      <item identifierRef="c-artifact" />
+      <item identifierRef="c-equipment" />
+      <item identifierRef="c-facility" />
+      <item identifierRef="c-distribution_network" />
+      <item identifierRef="c-material" />
+    </item>
+    <item>
+      <label>Motivation</label>
+      <item identifierRef="c-stakeholder" />
+      <item identifierRef="c-driver" />
+      <item identifierRef="c-assessment" />
+      <item identifierRef="c-goal" />
+      <item identifierRef="c-outcome" />
+      <item identifierRef="c-principle" />
+      <item identifierRef="c-requirement" />
+      <item identifierRef="c-constraint" />
+      <item identifierRef="c-meaning" />
+      <item identifierRef="c-value" />
+    </item>
+    <item>
+      <label>Implementation &amp; Migration</label>
+      <item identifierRef="c-work_package" />
+      <item identifierRef="c-deliverable" />
+      <item identifierRef="c-implementation_event" />
+      <item identifierRef="c-plateau" />
+      <item identifierRef="c-gap" />
+    </item>
+    <item>
+      <label>Other</label>
+      <item identifierRef="c-location" />
+      <item identifierRef="c-grouping" />
+      <item identifierRef="j-and" />
+      <item identifierRef="j-or" />
+    </item>
+    <item>
+      <label>Relations</label>
+      <item identifierRef="r-access" />
+      <item identifierRef="r-composition" />
+      <item identifierRef="r-flow" />
+      <item identifierRef="r-aggregation" />
+      <item identifierRef="r-assignment" />
+      <item identifierRef="r-influence" />
+      <item identifierRef="r-association" />
+      <item identifierRef="r-realization" />
+      <item identifierRef="r-specialization" />
+      <item identifierRef="r-triggering" />
+      <item identifierRef="r-serving" />
+      <item identifierRef="r-access-read" />
+      <item identifierRef="r-access-access" />
+      <item identifierRef="r-access-readwrite" />
+      <item identifierRef="r-assoc-undirected" />
+      <item identifierRef="r-influence-5" />
+      <item identifierRef="r-j1" />
+      <item identifierRef="r-j2" />
+      <item identifierRef="r-j3" />
+      <item identifierRef="r-j4" />
+      <item identifierRef="r-to-rel" />
+      <item identifierRef="r-grp-rel" />
+    </item>
+    <item>
+      <label>Views</label>
+      <item identifierRef="v-1" />
+      <item identifierRef="v-2" />
+    </item>
+  </organizations>
+  <propertyDefinitions>
+    <propertyDefinition identifier="propid-5" type="string">
+      <name>archi:borderType</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-2" type="string">
+      <name>cost</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-1" type="string">
+      <name>owner</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-4" type="string">
+      <name>status</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-3" type="string">
+      <name>weight</name>
+    </propertyDefinition>
+  </propertyDefinitions>
+  <views>
+    <diagrams>
+      <view identifier="v-1" xsi:type="Diagram" viewpoint="Layered">
+        <name>Everything</name>
+        <documentation>the main view</documentation>
+        <properties>
+          <property propertyDefinitionRef="propid-4">
+            <value>draft</value>
+          </property>
+          <property propertyDefinitionRef="propid-5">
+            <value>o-vgroup=rectangle</value>
+          </property>
+          <property propertyDefinitionRef="propid-5">
+            <value>o-note=dogear</value>
+          </property>
+        </properties>
+        <node identifier="o-grp" elementRef="c-grouping" xsi:type="Element" x="10" y="20" w="400" h="300">
+          <style>
+            <fillColor r="255" g="204" b="0" a="80" />
+            <lineColor r="0" g="0" b="0" a="100" />
+            <font name="Segoe UI" size="9" style="bold italic">
+              <color r="17" g="34" b="51" />
+            </font>
+          </style>
+          <node identifier="o-actor-nested" elementRef="c-business_actor" xsi:type="Element" x="40" y="60" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="o-actor-again" elementRef="c-business_actor" xsi:type="Element" x="500" y="20" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="o-src" elementRef="c-resource" xsi:type="Element" x="500" y="200" w="120" h="55">
+          <style>
+            <fillColor r="245" g="222" b="170" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="o-tgt" elementRef="c-resource" xsi:type="Element" x="700" y="200" w="120" h="55">
+          <style>
+            <fillColor r="245" g="222" b="170" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="o-vgroup" x="900" y="20" w="300" h="220" xsi:type="Container">
+          <label>Visual group</label>
+          <documentation>what the group means</documentation>
+          <style>
+            <fillColor r="225" g="225" b="225" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="o-note" xsi:type="Label" x="910" y="50" w="150" h="60">
+            <label>A note
+second line</label>
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="o-role-in-group" elementRef="c-business_role" xsi:type="Element" x="910" y="140" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <connection identifier="cn-to-conn" relationshipRef="r-to-rel" xsi:type="Relationship" source="o-actor-again" target="cn-serving">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="cn-serving" relationshipRef="r-serving" xsi:type="Relationship" source="o-src" target="o-tgt">
+          <style lineWidth="3">
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="600" y="150" />
+          <bendpoint x="650" y="150" />
+        </connection>
+        <connection identifier="cn-line" xsi:type="Line" source="o-note" target="o-role-in-group">
+          <style>
+            <lineColor r="0" g="0" b="255" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+      <view identifier="v-2" xsi:type="Diagram">
+        <name>Empty view</name>
+      </view>
+    </diagrams>
+  </views>
+</model>

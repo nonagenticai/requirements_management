@@ -1,0 +1,127 @@
+# Claude Code
+.claude/
+
+# ============================================
+# SECURITY: Sensitive files - NEVER commit!
+# ============================================
+# Environment files and variants
+.env
+.env.*
+!.env.example
+*.env
+*.env.*
+certs/
+# Backup files that might contain secrets
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+*.swp
+*~
+
+# Credentials and keys
+*credentials*
+*secret*
+!.secrets.baseline
+*_key
+*.key
+*.pem
+*.cert
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+id_ecdsa*
+# ============================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+# Not just the directory: a worktree commonly gets a `.venv` SYMLINK pointing at
+# the main checkout's environment, and `.venv/` (trailing slash) matches only
+# directories — so the symlink slips past `git add -A` and gets committed. CI
+# then checks it out and `uv sync` dies with "failed to create directory
+# `.venv`: File exists". Measured on PR #133.
+.venv
+env.bak/
+venv.bak/
+
+# Testing
+.pytest_cache/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# IDEs
+.idea/
+.vscode/
+.DS_Store
+*.swp
+*.swo
+
+# Logs and databases
+*.log
+logs/
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+
+# Python wheel files
+*.whl
+
+# UV package manager
+uv
+
+# Alembic migrations data
+alembic/versions/*.pyc
+
+# Project specific
+app/storage/
+scripts/output/
+
+# Python linter cache
+.ruff_cache/
+
+# Docker compose backups
+docker-compose*.backup
+docker-compose*.bak
+.env.backup*
+.env.bak*
+.local-ci-commit.txt
+.local-ci-push.txt
+coverage_html/
+01_recent_push_failure.txt
+02_deploy_issues.txt
+
+# Local worktrees (git worktree add) — never tracked
+.worktrees/

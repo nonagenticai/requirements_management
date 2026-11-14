@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="Native" id="native-model" version="5.0.0">
+  <folder name="Business" id="f-b" type="business">
+    <folder name="Sub" id="f-sub">
+      <documentation>sub doc</documentation>
+      <element xsi:type="archimate:BusinessActor" name="Actor" id="e-actor" profiles="prof-1">
+        <property key="p" value="v"/>
+      </element>
+    </folder>
+    <element xsi:type="archimate:BusinessRole" name="Role" id="e-role"/>
+  </folder>
+  <folder name="Relations" id="f-r" type="relations">
+    <element xsi:type="archimate:AssignmentRelationship" name="assigned" id="r-as" source="e-actor" target="e-role"/>
+    <element xsi:type="archimate:AssociationRelationship" id="r-j" source="e-role" target="j1"/>
+  </folder>
+  <folder name="Other" id="f-o" type="other">
+    <element xsi:type="archimate:Junction" id="j1" type="or"/>
+  </folder>
+  <folder name="Views" id="f-v" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" name="V" id="v1" viewpoint="layered" connectionRouterType="2">
+      <child xsi:type="archimate:Group" id="g1" name="Group" textAlignment="1" fillColor="#d2d7d7" borderType="1">
+        <bounds x="10" y="10" width="500" height="300"/>
+        <documentation>group doc</documentation>
+        <child xsi:type="archimate:DiagramObject" id="d-actor" targetConnections="c-note" textAlignment="1" textPosition="1" lineWidth="3" gradient="1" type="1" archimateElement="e-actor">
+          <bounds x="20" y="30" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="c-as" textPosition="0" source="d-actor" target="d-role" archimateRelationship="r-as" nameVisible="false"/>
+          <feature name="labelExpression" value="${name} (${type})"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d-role" targetConnections="c-as" archimateElement="e-role">
+          <bounds x="250" y="30" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="c-j" source="d-role" target="d-j" archimateRelationship="r-j"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d-j" targetConnections="c-j" archimateElement="j1">
+          <bounds x="300" y="150" width="15" height="15"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Note" id="n1" textAlignment="1" borderType="2">
+        <bounds x="600" y="10" width="185" height="80"/>
+        <content>a note
+two lines</content>
+        <sourceConnection xsi:type="archimate:DiagramModelConnection" id="c-note" name="line label" source="n1" target="d-actor"/>
+      </child>
+      <child xsi:type="archimate:DiagramModelReference" id="ref1" model="v2">
+        <bounds x="600" y="200" width="120" height="55"/>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="V2" id="v2"/>
+    <element xsi:type="archimate:SketchModel" name="Sketch" id="s1">
+      <child xsi:type="archimate:SketchModelSticky" id="st1" name="sticky" fillColor="#ffffff">
+        <bounds x="10" y="10" width="75" height="63"/>
+      </child>
+    </element>
+  </folder>
+  <purpose>model purpose</purpose>
+  <property key="model-prop" value="mv"/>
+  <profile name="Special" id="prof-1" conceptType="BusinessActor"/>
+</archimate:model>

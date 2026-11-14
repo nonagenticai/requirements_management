@@ -1,0 +1,995 @@
+{
+  "policies": [
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "architecture_element_realisation_bindings",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "system_published_read",
+      "qual": "((tenant_id = '0195f48b-d000-7000-8000-000000000001'::uuid) AND ((visibility)::text = 'tenant'::text) AND ((version_status)::text = 'PUBLISHED'::text) AND (current_setting('app.current_tenant'::text, true) = ANY (ARRAY['0195f48b-d000-7000-8000-000000000001'::text, '0195f48b-d000-7000-8000-000000000002'::text, '0195f48b-d000-7000-8000-000000000003'::text, '0195f48b-d000-7000-8000-000000000004'::text, '0195f48b-d000-7000-8000-000000000005'::text, '019de842-c92a-7e37-8fdd-eb0d8c5396f9'::text])))",
+      "roles": "{public}",
+      "table": "architecture_elements",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "architecture_elements",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "architecture_relationships",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "system_published_read",
+      "qual": "((tenant_id = '0195f48b-d000-7000-8000-000000000001'::uuid) AND ((visibility)::text = 'tenant'::text) AND ((version_status)::text = 'PUBLISHED'::text) AND (current_setting('app.current_tenant'::text, true) = ANY (ARRAY['0195f48b-d000-7000-8000-000000000001'::text, '0195f48b-d000-7000-8000-000000000002'::text, '0195f48b-d000-7000-8000-000000000003'::text, '0195f48b-d000-7000-8000-000000000004'::text, '0195f48b-d000-7000-8000-000000000005'::text, '019de842-c92a-7e37-8fdd-eb0d8c5396f9'::text])))",
+      "roles": "{public}",
+      "table": "architecture_standards",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "architecture_standards",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "architecture_view_connections",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "architecture_view_objects",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "system_published_read",
+      "qual": "((tenant_id = '0195f48b-d000-7000-8000-000000000001'::uuid) AND ((visibility)::text = 'tenant'::text) AND ((version_status)::text = 'PUBLISHED'::text) AND (current_setting('app.current_tenant'::text, true) = ANY (ARRAY['0195f48b-d000-7000-8000-000000000001'::text, '0195f48b-d000-7000-8000-000000000002'::text, '0195f48b-d000-7000-8000-000000000003'::text, '0195f48b-d000-7000-8000-000000000004'::text, '0195f48b-d000-7000-8000-000000000005'::text, '019de842-c92a-7e37-8fdd-eb0d8c5396f9'::text])))",
+      "roles": "{public}",
+      "table": "architecture_views",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "architecture_views",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "system_published_read",
+      "qual": "((tenant_id = '0195f48b-d000-7000-8000-000000000001'::uuid) AND ((visibility)::text = 'tenant'::text) AND ((version_status)::text = 'PUBLISHED'::text) AND (current_setting('app.current_tenant'::text, true) = ANY (ARRAY['0195f48b-d000-7000-8000-000000000001'::text, '0195f48b-d000-7000-8000-000000000002'::text, '0195f48b-d000-7000-8000-000000000003'::text, '0195f48b-d000-7000-8000-000000000004'::text, '0195f48b-d000-7000-8000-000000000005'::text, '019de842-c92a-7e37-8fdd-eb0d8c5396f9'::text])))",
+      "roles": "{public}",
+      "table": "decisions",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "decisions",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "idempotency_keys",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "modeling_change_sets",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "modeling_model_revisions",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "modeling_models",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "modeling_publications",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "modeling_reviews",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "modeling_trace_links",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "modeling_validation_findings",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "modeling_validation_runs",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "system_published_read",
+      "qual": "((tenant_id = '0195f48b-d000-7000-8000-000000000001'::uuid) AND ((visibility)::text = 'tenant'::text) AND ((version_status)::text = 'PUBLISHED'::text) AND (current_setting('app.current_tenant'::text, true) = ANY (ARRAY['0195f48b-d000-7000-8000-000000000001'::text, '0195f48b-d000-7000-8000-000000000002'::text, '0195f48b-d000-7000-8000-000000000003'::text, '0195f48b-d000-7000-8000-000000000004'::text, '0195f48b-d000-7000-8000-000000000005'::text, '019de842-c92a-7e37-8fdd-eb0d8c5396f9'::text])))",
+      "roles": "{public}",
+      "table": "pm_benefits",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_benefits",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_board_templates",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_capabilities",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_card_ledger",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_card_types",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_coach_actions",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_deliverable_kinds",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_gates",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_milestone_kinds",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_priority_levels",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "system_published_read",
+      "qual": "((tenant_id = '0195f48b-d000-7000-8000-000000000001'::uuid) AND ((visibility)::text = 'tenant'::text) AND ((version_status)::text = 'PUBLISHED'::text) AND (current_setting('app.current_tenant'::text, true) = ANY (ARRAY['0195f48b-d000-7000-8000-000000000001'::text, '0195f48b-d000-7000-8000-000000000002'::text, '0195f48b-d000-7000-8000-000000000003'::text, '0195f48b-d000-7000-8000-000000000004'::text, '0195f48b-d000-7000-8000-000000000005'::text, '019de842-c92a-7e37-8fdd-eb0d8c5396f9'::text])))",
+      "roles": "{public}",
+      "table": "pm_programmes",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_programmes",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_project_brief_versions",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_project_capabilities",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_project_capability_events",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_project_phase_events",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_project_phases",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_project_type_card_types",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_project_type_phases",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_project_types",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "system_published_read",
+      "qual": "((tenant_id = '0195f48b-d000-7000-8000-000000000001'::uuid) AND ((visibility)::text = 'tenant'::text) AND ((version_status)::text = 'PUBLISHED'::text) AND (current_setting('app.current_tenant'::text, true) = ANY (ARRAY['0195f48b-d000-7000-8000-000000000001'::text, '0195f48b-d000-7000-8000-000000000002'::text, '0195f48b-d000-7000-8000-000000000003'::text, '0195f48b-d000-7000-8000-000000000004'::text, '0195f48b-d000-7000-8000-000000000005'::text, '019de842-c92a-7e37-8fdd-eb0d8c5396f9'::text])))",
+      "roles": "{public}",
+      "table": "pm_projects",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_projects",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_recipe_items",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_recipes",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "system_published_read",
+      "qual": "((tenant_id = '0195f48b-d000-7000-8000-000000000001'::uuid) AND ((visibility)::text = 'tenant'::text) AND ((version_status)::text = 'PUBLISHED'::text) AND (current_setting('app.current_tenant'::text, true) = ANY (ARRAY['0195f48b-d000-7000-8000-000000000001'::text, '0195f48b-d000-7000-8000-000000000002'::text, '0195f48b-d000-7000-8000-000000000003'::text, '0195f48b-d000-7000-8000-000000000004'::text, '0195f48b-d000-7000-8000-000000000005'::text, '019de842-c92a-7e37-8fdd-eb0d8c5396f9'::text])))",
+      "roles": "{public}",
+      "table": "pm_resources",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_resources",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "system_published_read",
+      "qual": "((tenant_id = '0195f48b-d000-7000-8000-000000000001'::uuid) AND ((visibility)::text = 'tenant'::text) AND ((version_status)::text = 'PUBLISHED'::text) AND (current_setting('app.current_tenant'::text, true) = ANY (ARRAY['0195f48b-d000-7000-8000-000000000001'::text, '0195f48b-d000-7000-8000-000000000002'::text, '0195f48b-d000-7000-8000-000000000003'::text, '0195f48b-d000-7000-8000-000000000004'::text, '0195f48b-d000-7000-8000-000000000005'::text, '019de842-c92a-7e37-8fdd-eb0d8c5396f9'::text])))",
+      "roles": "{public}",
+      "table": "pm_risks",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_risks",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "pm_wip_limits",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "principle_conflicts",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "system_published_read",
+      "qual": "((tenant_id = '0195f48b-d000-7000-8000-000000000001'::uuid) AND ((visibility)::text = 'tenant'::text) AND ((version_status)::text = 'PUBLISHED'::text) AND (current_setting('app.current_tenant'::text, true) = ANY (ARRAY['0195f48b-d000-7000-8000-000000000001'::text, '0195f48b-d000-7000-8000-000000000002'::text, '0195f48b-d000-7000-8000-000000000003'::text, '0195f48b-d000-7000-8000-000000000004'::text, '0195f48b-d000-7000-8000-000000000005'::text, '019de842-c92a-7e37-8fdd-eb0d8c5396f9'::text])))",
+      "roles": "{public}",
+      "table": "principles",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "principles",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "quality_evaluations",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "system_published_read",
+      "qual": "((tenant_id = '0195f48b-d000-7000-8000-000000000001'::uuid) AND ((visibility)::text = 'tenant'::text) AND ((version_status)::text = 'PUBLISHED'::text) AND (current_setting('app.current_tenant'::text, true) = ANY (ARRAY['0195f48b-d000-7000-8000-000000000001'::text, '0195f48b-d000-7000-8000-000000000002'::text, '0195f48b-d000-7000-8000-000000000003'::text, '0195f48b-d000-7000-8000-000000000004'::text, '0195f48b-d000-7000-8000-000000000005'::text, '019de842-c92a-7e37-8fdd-eb0d8c5396f9'::text])))",
+      "roles": "{public}",
+      "table": "requirements",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "requirements",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "system_published_read",
+      "qual": "((tenant_id = '0195f48b-d000-7000-8000-000000000001'::uuid) AND ((visibility)::text = 'tenant'::text) AND ((version_status)::text = 'PUBLISHED'::text) AND (current_setting('app.current_tenant'::text, true) = ANY (ARRAY['0195f48b-d000-7000-8000-000000000001'::text, '0195f48b-d000-7000-8000-000000000002'::text, '0195f48b-d000-7000-8000-000000000003'::text, '0195f48b-d000-7000-8000-000000000004'::text, '0195f48b-d000-7000-8000-000000000005'::text, '019de842-c92a-7e37-8fdd-eb0d8c5396f9'::text])))",
+      "roles": "{public}",
+      "table": "toc_nodes",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "toc_nodes",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "DELETE",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation_del",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "toc_settings",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation_ins",
+      "qual": null,
+      "roles": "{public}",
+      "table": "toc_settings",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation_read",
+      "qual": "((tenant_id IS NULL) OR (tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid))",
+      "roles": "{public}",
+      "table": "toc_settings",
+      "with_check": null
+    },
+    {
+      "cmd": "UPDATE",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation_upd",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "toc_settings",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "SELECT",
+      "permissive": "PERMISSIVE",
+      "policy": "system_published_read",
+      "qual": "((tenant_id = '0195f48b-d000-7000-8000-000000000001'::uuid) AND ((visibility)::text = 'tenant'::text) AND ((version_status)::text = 'PUBLISHED'::text) AND (current_setting('app.current_tenant'::text, true) = ANY (ARRAY['0195f48b-d000-7000-8000-000000000001'::text, '0195f48b-d000-7000-8000-000000000002'::text, '0195f48b-d000-7000-8000-000000000003'::text, '0195f48b-d000-7000-8000-000000000004'::text, '0195f48b-d000-7000-8000-000000000005'::text, '019de842-c92a-7e37-8fdd-eb0d8c5396f9'::text])))",
+      "roles": "{public}",
+      "table": "toc_trees",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "toc_trees",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "uml_diagram_connections",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "uml_diagram_objects",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "uml_diagrams",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "uml_elements",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "uml_interactions",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    },
+    {
+      "cmd": "ALL",
+      "permissive": "PERMISSIVE",
+      "policy": "tenant_isolation",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)",
+      "roles": "{public}",
+      "table": "uml_relationships",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.current_tenant'::text, true), ''::text))::uuid)"
+    }
+  ],
+  "rls_tables": [
+    {
+      "acl": "",
+      "force": false,
+      "rls": false,
+      "table": "alembic_version"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "architecture_element_realisation_bindings"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "architecture_elements"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "architecture_relationships"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "architecture_standards"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "architecture_view_connections"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "architecture_view_objects"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "architecture_views"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "decisions"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": false,
+      "table": "entity_version_history"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "idempotency_keys"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "modeling_change_sets"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "modeling_model_revisions"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "modeling_models"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "modeling_publications"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "modeling_reviews"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "modeling_trace_links"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "modeling_validation_findings"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "modeling_validation_runs"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_benefits"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_board_templates"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_capabilities"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_card_ledger"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_card_types"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_coach_actions"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_deliverable_kinds"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_gates"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_milestone_kinds"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_priority_levels"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_programmes"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_project_brief_versions"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_project_capabilities"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_project_capability_events"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_project_phase_events"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_project_phases"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_project_type_card_types"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_project_type_phases"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_project_types"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_projects"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_recipe_items"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_recipes"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_resources"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_risks"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "pm_wip_limits"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "principle_conflicts"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "principles"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "quality_evaluations"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "requirements"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": false,
+      "table": "tenant_id_crosswalk"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "toc_nodes"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "toc_settings"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "toc_trees"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "uml_diagram_connections"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "uml_diagram_objects"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "uml_diagrams"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "uml_elements"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "uml_interactions"
+    },
+    {
+      "acl": "",
+      "force": false,
+      "rls": true,
+      "table": "uml_relationships"
+    }
+  ],
+  "security_definer_functions": [],
+  "views": []
+}

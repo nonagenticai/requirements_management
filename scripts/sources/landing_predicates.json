@@ -1,0 +1,217 @@
+{
+  "_comment": [
+    "LANDING PREDICATES — the single source of truth for what DONE means, per card_type.",
+    "",
+    "WHY THIS FILE EXISTS. Measured 2026-08-31: of 31 pull requests the AA conveyor has ever",
+    "produced, 28 backed a card that reached DONE and exactly 2 had ever merged — both merged by",
+    "a human, more than two months earlier. DONE meant 'an action call returned ok', which for a",
+    "code deliverable means 'a PR was opened': activity-action.json :: Dispatch Card Lifecycle",
+    "computes ok = !!pr_url under success_when 'pr_opened', and qa-evaluate :: Resolve Target List",
+    "routes to DONE on the verdict that follows. The work was marked complete on evidence that it",
+    "was PROPOSED. It then never landed, was re-detected, and was issued again — the seeded",
+    "aa_bugfix_probe bug produced five byte-identical PRs (#94, #113, #117, #118, #119) whose five",
+    "cards all sat in DONE.",
+    "",
+    "THE INVARIANT THIS FILE ENCODES: a card is in DONE iff its deliverable has been OBSERVED to",
+    "land in the world. 'Landed' differs per deliverable class, and each class names an observer.",
+    "Nothing here is satisfied by a call that returned 200.",
+    "",
+    "⚠️ CORRECTED — the two fixtures this used to cite NO LONGER EXIST. The text read: 'pr_opened",
+    "IS NOT A LOOPHOLE — IT IS A REQUIRED EXEMPTION. This repository drives two harness fixtures",
+    "whose READMEs mandate that their PR must NOT be merged: aa_bugfix_probe … and",
+    "aa_feature_probe … That is what repo_policy below is for.' All five aa_*_probe/ directories",
+    "were deleted from nonagenticai/enterprise_mcp_server (its PR #147): seeding a PUBLIC repo",
+    "with deliberately vulnerable code as a test fixture was a mistake. So repo_policy is now",
+    "EMPTY and pr_opened is currently UNREACHABLE — nothing degrades. The predicate and the",
+    "mechanism are kept because the ARGUMENT still holds for any future must-not-merge fixture:",
+    "merging one consumes the seed, and a registry that could not express 'the proposal IS the",
+    "deliverable' would break such a fixture on its first tick. See repo_policy._comment.",
+    "",
+    "⚠️ UNKNOWN card_type FAILS OPEN, deliberately. A card_type absent from this map gets 'none'",
+    "and is never held out of DONE. Blocking on a type we failed to read would be the prefetch sin",
+    "inverted: suppressing work on the strength of a field we could not parse. The sweeper counts",
+    "unknown types in its report so the gap is visible rather than silent."
+  ],
+  "_regen": "node scripts/gen-landing-predicates.mjs && python3 scripts/inject-landing-predicates.py",
+  "version": 1,
+
+  "predicates": {
+    "pr_merged": {
+      "means": "a pull request the card produced has been merged",
+      "observer": "GET /repos/{owner}/{repo}/pulls/{n}/merge — 204 merged, 404 not merged",
+      "gate": "qa-evaluate :: Resolve Target List holds the card in BLOCKED with block_reason awaiting_merge",
+      "drain": "none since 2026-09-27 (AA Maintenance - Delivery Sweep RETIRED, vision WP-D: no clock-pushed work); CI/PR-event delivery replaces it"
+    },
+    "pr_opened": {
+      "means": "the proposal itself is the deliverable; the PR must NOT be merged",
+      "observer": "a non-empty pr_url on the card",
+      "gate": "none — the card reaches DONE as today",
+      "drain": "n/a"
+    },
+    "asset_promoted": {
+      "means": "a DONE-phase promote cell swapped the candidate onto the base",
+      "observer": "prior_outputs['<promote-activity>'].promoted === true",
+      "gate": "STAMP ONLY (see _promote_gate_is_stamp_only)",
+      "drain": "n/a"
+    },
+    "asset_persisted": {
+      "means": "the card's asset_id field is bound to an element that was READ BACK from its owning service",
+      "observer": "a kind:'asset' entry with a non-empty id in evidence.deliverables. doing-orchestrate :: Build Persist Input emits it ONLY from a successful step output shaped {element_id, bound:true} — the return value of the doing.action's assert_element_persisted compute step, which throws unless getArchitectureElement returned the same id with a non-empty body AND bind_element_to_card (customFieldValue.set on asset_id) succeeded",
+      "gate": "qa-evaluate :: Apply Exit Rule holds the card in BLOCKED with blocking_gate asset_not_persisted; no entry (including an absent deliverables field) is NOT landed",
+      "drain": "none since 2026-09-27 (AA Maintenance - Blocked Sweep RETIRED, vision WP-D: no clock-pushed work); the pull mechanism re-queues the card"
+    },
+    "hunt_commit_landed": {
+      "means": "a hunt-mode development_bug_fix card's fix was committed to its hunt branch aa/bughunt-<H>; the merge belongs to the parent bug_hunt_sweep H, whose own QA-cell machine (B15) compares that branch (f5) and opens the ONE hunt PR",
+      "observer": "a kind:'hunt_commit' deliverable (id '<fix_branch>@<40-hex sha>') in evidence.deliverables, emitted by doing-orchestrate :: Build Persist Input ONLY for a card whose card_inputs.hunt_mode === true, from the step output {hunt_commit, commit_sha} of the hunt variant's assert step",
+      "gate": "none — landing is deferred to the parent hunt card (G1 design §3.5 V4-1); any kind:'pr' deliverable on the same run voids the override and the pr_merged hold applies unchanged",
+      "drain": "n/a"
+    },
+    "none": {
+      "means": "no externally observable landing artifact; DONE is decided by the QA verdict alone",
+      "observer": "n/a",
+      "gate": "none",
+      "drain": "n/a"
+    }
+  },
+
+  "_promote_gate_is_stamp_only": [
+    "asset_promoted RECORDS but does not BLOCK, and that is a measured decision, not caution.",
+    "",
+    "Census 2026-08-31, positive control stated first: execution_entity holds ZERO rows for all",
+    "four promote workflows (5zK4QXfO5cjyIduv workflow, yeN0MwnLi3WtlJ0t procedure,",
+    "S7JzJ8xwJxvM8UO8 prompt, cjl1nMKvuUPXKoWy asset) across the entire retained history — 63,727",
+    "executions spanning 2026-08-24..08-31. Retention is ~7 days, so there is no 30-day window to",
+    "ask about. The improvement loops have not promoted anything at all, so 'how many cards would",
+    "a gate move, and how many wrongly' is unmeasurable; today's honest answer is 0 and 0.",
+    "",
+    "And the reason strings cannot carry a gate even once data exists. They are not separable:",
+    "  INTENDED  'base update failed (base may be a read-only inherited system-tenant procedure)'",
+    "            — correct fail-safe behaviour; blocking would move a CORRECT card out of DONE.",
+    "  MIXED     asset-promote 'base fetch failed' bundles a transient 5xx with a read-only 404;",
+    "            prompt-promote 'prompt swap failed (base missing, CAS mismatch, or 422)' bundles",
+    "            an intended 404 with two real defects. The reader cannot tell them apart.",
+    "  SILENT    workflow-promote on a failed workflow.update emits promoted:false with",
+    "            skip_reason null — indistinguishable from success except by the boolean.",
+    "",
+    "Blocking therefore has two named prerequisites, and they are real work, not a formality:",
+    "  1. split the MIXED strings into distinct machine-readable codes in the four promote cells;",
+    "  2. give workflow-promote a reason on its failed-update path.",
+    "Until both land, this predicate writes promote_landed / promote_skip_reason to the card and",
+    "leaves the card where the QA verdict put it."
+  ],
+
+  "card_types": {
+    "development_chore":              "pr_merged",
+    "development_bug_fix":            "pr_merged",
+    "development_feature_new":        "pr_merged",
+    "development_feature_update":     "pr_merged",
+    "development_poc":                "pr_merged",
+    "development_security_patch":     "pr_merged",
+    "development_iac_security_patch": "pr_merged",
+    "dependency_refactoring":         "pr_merged",
+    "architecture_refactoring":       "pr_merged",
+    "decoupling_refactoring":         "pr_merged",
+    "code_smell_refactoring":         "pr_merged",
+
+    "workflow_development":            "asset_promoted",
+    "workflow_redesign":               "asset_promoted",
+    "procedure_improvement":           "asset_promoted",
+    "prompt_improvement":              "asset_promoted",
+    "principle_statistics_analysis":   "asset_promoted",
+    "requirement_statistics_analysis": "asset_promoted",
+    "decision_statistics_analysis":    "asset_promoted",
+
+    "architecture_task":               "asset_persisted",
+
+    "project_setup":                   "none",
+    "project_start_request_analysis":  "none",
+    "feature_start_request_analysis":  "none",
+    "bug_analysis":                    "none",
+    "verification_test":               "none",
+    "project_closure":                 "none"
+  },
+
+  "_card_types_provenance": [
+    "The eight pr_merged types are exactly the card types MEASURED to carry a real pr_url on the",
+    "live board (kanban DB, 2026-08-31): development_chore 14, development_bug_fix 5,",
+    "development_poc / development_feature_update / development_feature_new 1 each in DONE, plus",
+    "dependency_refactoring and the two security-patch types on cards in BLOCKED. They are not a",
+    "guess at which types 'sound like' code.",
+    "",
+    "⚠️ verification_test is 'none' ON PURPOSE even though done-finalize's PUBLISH_PR_ON_DONE set",
+    "contains it. That set makes a verification_test card MARK THE CHAIN'S PR READY; the card does",
+    "not carry a pr_url of its own (measured: 8 in DONE, 0 with a pr_url). The card that carries",
+    "the PR is the development_* card upstream of it, and that is where the predicate belongs.",
+    "Putting pr_merged here would hold a card hostage to an artifact it does not own.",
+    "",
+    "⛔ RE-MEASURED 2026-09-02 — THE TABLE WAS INCOMPLETE AND IT WAS LEAKING. architecture_refactoring",
+    "(6 cards carrying a real pr_url, 2 of them ALREADY IN DONE) and decoupling_refactoring (1) do",
+    "produce pull requests and were absent, so landingPredicateFor() returned 'none' and they reached",
+    "DONE on unmerged PRs. Three did so on 2026-09-01 alone — PRs #129/#130/#131, all still OPEN, all",
+    "three cards in DONE — AFTER the gate was armed. Both types are added above as pr_merged.",
+    "",
+    "⚠️ A TABLE OF MEASURED TYPES CANNOT STOP THE NEXT ONE. Adding two strings closes today's instance",
+    "and leaves the mechanism — an unknown type fails OPEN — exactly as it was. That is why the",
+    "generator's fallback now ALSO consults the run's evidence (a kind:'pr' deliverable): this table",
+    "stays the readable authority, and the evidence is the backstop for the type nobody has enumerated",
+    "yet. Both are needed; neither alone is sufficient.",
+    "",
+    "⛔ ADDED 2026-09-21 — architecture_task -> asset_persisted. architecture_task is ~51% of the",
+    "cards on the conveyor board and was ABSENT here, so it failed open: a card reached DONE having",
+    "produced nothing. Its doing.action (AA_IMPLEMENTATION/doing_action_procedures.json) authors an",
+    "architecture element (requirements service, architecture_elements table), reads it back, and",
+    "binds its id to the card's asset_id custom field; the terminal compute step",
+    "assert_element_persisted returns {element_id, bound:true} only when all three held. That",
+    "return value is the observation. It reaches QA as a kind:'asset' deliverable (element_id is",
+    "not in the generic harvest's _ID_KEYS, so Build Persist Input recognises the {element_id,",
+    "bound:true} shape explicitly and hoists it past the 460-char trim). It is NOT pr_merged —",
+    "architecture_task has 0 cards that ever carried a pr_url (see M11 in the fragment) — and it",
+    "is deliberately scoped to architecture_task only: the seven sibling element-authoring types",
+    "(architecture_epic, architecture_subtask, design_packaging, domain_analysis,",
+    "future_state_analysis, narrative_design, plateau_planning_analysis) share the same tail but",
+    "were not measured here, and a table entry is how they opt in.",
+    "",
+    "2026-09-24 IT findings grid G5: code_smell_refactoring -> pr_merged. Lint/complexity fixes land",
+    "as PR commits like development_bug_fix: its doing.action (AA_IMPLEMENTATION/",
+    "doing_action_procedures.json) ends applyCodeChanges -> createPullRequest -> validatePullRequest,",
+    "so absent from this table it failed open and could reach DONE on an unmerged PR."
+  ],
+
+  "deliverable_overrides": {
+    "_comment": [
+      "Per-card_type override keyed on the run's EVIDENCE (evidence.deliverables, entries {kind, id}),",
+      "NOT on card_inputs: qa-evaluate :: Apply Exit Rule never sees card_inputs, and step outputs reach",
+      "it stripped; the deliverables channel is what survives (G1 back-half design §3.5, V4-1).",
+      "Rule (generated into <landing-core> :: landingPredicateFor, so qa-evaluate and done-finalize",
+      "cannot disagree): for a card_type listed here, if the run carries NO kind:'pr' deliverable and",
+      "carries a deliverable whose kind is listed, the predicate is the listed one. Any PR evidence",
+      "leaves the card_types predicate (pr_merged) in force — a hunt card that somehow opened a PR is",
+      "held like every other PR-bearing card. Only hunt-mode dispatch emits kind:'hunt_commit'.",
+      "Pinned by scripts/tests/test-landing-predicates.mjs and scripts/tests/test-dbf-hunt.mjs (A19)."
+    ],
+    "development_bug_fix": { "hunt_commit": "hunt_commit_landed" }
+  },
+
+  "repo_policy": {
+    "_comment": [
+      "Per-repository override, applied to a card whose predicate is pr_merged. The key is",
+      "'<owner>/<repo>' exactly as it appears in the card's pr_repo_owner / pr_repo_name fields.",
+      "A path prefix under paths_pr_opened means: if EVERY file the PR touches sits under one of",
+      "these prefixes, the card's predicate degrades to pr_opened. Scoped by PATH rather than by",
+      "repo, so a repo that is BOTH a real product and the host of a fixture keeps its genuine",
+      "work gated.",
+      "",
+      "⛔ THE MAP IS EMPTY, AND THAT IS THE CURRENT TRUTH — DO NOT RE-ADD AN ENTRY TO MAKE A GATE",
+      "GO QUIET. It held exactly one key, 'nonagenticai/enterprise_mcp_server', naming the three",
+      "harness-fixture directories aa_bugfix_probe/ aa_feature_probe/ aa_refactor_probe/. Those",
+      "directories were DELETED from that repository (enterprise_mcp_server PR #147) because",
+      "committing deliberately vulnerable code to a public repo as a test fixture was a mistake.",
+      "Once the paths are gone no PR can match a prefix, so the entry could only ever have",
+      "degraded nothing — dead config naming deleted directories. With the map empty,",
+      "prLandingPolicy() returns 'pr_merged' for every repo (the !cfg branch), i.e. an ems PR that",
+      "touches only those former-fixture paths now requires a MERGE to count as landed. Intended.",
+      "The MECHANISM stays: a future fixture with a real must-not-merge README gets a key here.",
+      "Pinned by scripts/tests/test-landing-predicates.mjs § 4, which fails if the entry returns."
+    ]
+  }
+}
