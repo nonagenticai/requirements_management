@@ -234,7 +234,7 @@ class VersionFieldsIn(VersionFieldsMixin):
     # above (tests/test_version_status_vocabulary.py pins both halves). ty flags
     # the narrowed override as unsound for writes through a base-typed reference;
     # nothing assigns ``version_status`` on a request model after validation.
-    version_status: VersionStatus = Field(  # ty: ignore[invalid-mutable-override]
+    version_status: VersionStatus = Field(  # ty: ignore[incompatible-mutable-override]
         default="DRAFT",
         description="Status: DRAFT, PUBLISHED, or DEPRECATED",
     )

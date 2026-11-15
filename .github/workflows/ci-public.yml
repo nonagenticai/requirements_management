@@ -127,10 +127,12 @@ jobs:
       - name: ruff format
         run: uv run ruff format --check .
 
-      # Type checking is deliberately not in the shared gate: the tool and the paths it
-      # checks are per-repo. If the repo already gates types, re-enable it here:
-      #   - name: types
-      #     run: uv run --with ty ty check <paths>
+      # Type checking is part of the gate — it is never optional. Runs the same ty the
+      # pre-push hook runs, locked in the dev group, so hook-green and CI-green mean the
+      # same thing. Error-level diagnostics fail; third-party deprecation warnings do not
+      # ([tool.ty.terminal] error-on-warning = false).
+      - name: ty check
+        run: uv run ty check src/
 
       # -n 4, not auto: tests/conftest.py keys the DROP/CREATE/TRUNCATE lifecycle to a
       # per-worker schema, and the repo's own CI settled on 4 after measuring.
