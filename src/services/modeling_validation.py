@@ -424,7 +424,7 @@ async def _background_run(
                     .values(status="running", started_at=datetime.now(UTC))
                 )
                 await session.commit()
-            if started.rowcount != 1:  # ty: ignore[unresolved-attribute]
+            if started.rowcount != 1:  # ty: ignore[missing-attribute]
                 return  # reaped as orphaned meanwhile
             # CPU work, no connection held: the manifest is already in memory.
             report = await asyncio.to_thread(
