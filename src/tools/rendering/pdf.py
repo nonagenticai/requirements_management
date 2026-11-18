@@ -58,7 +58,8 @@ def titled_svg(svg: str, title: str) -> str:
     page_w = max(width, 0.62 * _TITLE_SIZE * len(title) + 32)
     outer = etree.Element(
         f"{{{SVG_NS}}}svg",
-        nsmap={None: SVG_NS},
+        # None is lxml's default-namespace key; lxml-stubs types it as str only.
+        nsmap={None: SVG_NS},  # ty: ignore[invalid-argument-type]
         width=f"{page_w:g}",
         height=f"{height + TITLE_BAND:g}",
         viewBox=f"0 0 {page_w:g} {height + TITLE_BAND:g}",
@@ -104,7 +105,8 @@ def render_pdf_document(pages: Sequence[tuple[str, str]], *, title: str) -> byte
     writer = PdfWriter()
     for index, (page_title, svg) in enumerate(pages):
         writer.append(PdfReader(io.BytesIO(_svg2pdf(titled_svg(svg, page_title)))))
-        writer.add_outline_item(page_title or f"Page {index + 1}", index)
+        # pypdf 7 made these keyword-only (``def add_outline_item(self, *, title, page_number, ...)``).
+        writer.add_outline_item(title=page_title or f"Page {index + 1}", page_number=index)
     writer.add_metadata({"/Title": title, "/Producer": "requirements-api"})
     out = io.BytesIO()
     writer.write(out)
