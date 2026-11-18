@@ -105,6 +105,9 @@ contract = [
 [dependency-groups]
 dev = [
     "detect-secrets>=1.5.0",
+    # lxml ships no `etree` stubs; without these ty 0.0.105 reports
+    # "Module `lxml` has no member `etree`" on every `from lxml import etree`.
+    "lxml-stubs>=0.5.1",
     "ty>=0.0.104",
     "ruff>=0.15.7",
     "pytest>=9.0.2",
