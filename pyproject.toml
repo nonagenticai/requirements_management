@@ -54,7 +54,7 @@ dependencies = [
     "pgvector>=0.3.0",
     # OpenTelemetry
     "structlog>=25.5.0",
-    "opentelemetry-api>=1.45.2",
+    "opentelemetry-api>=1.45.1",
     "opentelemetry-sdk>=1.24.0",
     "opentelemetry-exporter-otlp-proto-http>=1.24.0",
     "opentelemetry-instrumentation-fastapi>=0.53b1",
@@ -105,7 +105,10 @@ contract = [
 [dependency-groups]
 dev = [
     "detect-secrets>=1.5.0",
-    "ty>=0.0.24",
+    # lxml ships no `etree` stubs; without these ty 0.0.105 reports
+    # "Module `lxml` has no member `etree`" on every `from lxml import etree`.
+    "lxml-stubs>=0.5.1",
+    "ty>=0.0.104",
     "ruff>=0.15.7",
     "pytest>=9.0.2",
     "pytest-asyncio>=1.3.0",
@@ -196,7 +199,12 @@ fail_under = 85
 python-version = "3.14"
 
 [tool.ty.rules]
+# Renamed upstream: ty 0.0.104 warns that `unresolved-import` is now `import-not-found`.
 import-not-found = "ignore"
+
+[tool.ty.terminal]
+# Errors fail the gate; warnings (deprecations reported by third-party packages) do not.
+error-on-warning = false
 
 [tool.ty.src]
 exclude = ["**/alembic/**"]

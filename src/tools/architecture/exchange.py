@@ -725,7 +725,9 @@ def export_exchange_report(
     """Export a snapshot and report every construct the format cannot carry."""
     reg = get_registry()
     ctx = _ExportCtx(language=language)
-    root = etree.Element(_q("model"), nsmap={None: NS, "xsi": XSI})
+    # lxml-stubs types nsmap as Mapping[str, str]; lxml's documented default-namespace
+    # key is None, which is what the XMI round-trip needs.
+    root = etree.Element(_q("model"), nsmap={None: NS, "xsi": XSI})  # ty: ignore[invalid-argument-type]
     root.set(_XSI_SCHEMA_LOCATION, SCHEMA_LOCATION)
     root.set("identifier", ctx.xml_id("model", model_id))
     ctx.lang_el(root, "name", name, model_id)
