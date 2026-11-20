@@ -18,7 +18,7 @@ from __future__ import annotations
 import io
 from collections.abc import Sequence
 
-from lxml import etree
+from lxml import etree  # ty: ignore[missing-module-member]  # C extension submodule ty cannot see
 from pypdf import PdfReader, PdfWriter
 
 from tools.rendering.fonts import FONT_FAMILY

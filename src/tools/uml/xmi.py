@@ -29,7 +29,7 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from lxml import etree
+from lxml import etree  # ty: ignore[missing-module-member]  # C extension submodule ty cannot see
 
 from schemas.uml import (
     UmlElementIn,

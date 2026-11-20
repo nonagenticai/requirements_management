@@ -14,7 +14,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Any
 
-from lxml import etree
+from lxml import etree  # ty: ignore[missing-module-member]  # C extension submodule ty cannot see
 
 from schemas.modeling import Finding, FindingTarget, Severity, TargetKind, sort_findings
 from tools.rendering.fonts import FONT_FAMILY, FONT_FAMILY_NAME, metrics
