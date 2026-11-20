@@ -196,7 +196,7 @@ fail_under = 85
 python-version = "3.14"
 
 [tool.ty.rules]
-unresolved-import = "ignore"
+import-not-found = "ignore"
 
 [tool.ty.src]
 exclude = ["**/alembic/**"]

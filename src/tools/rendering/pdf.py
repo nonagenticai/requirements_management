@@ -18,7 +18,7 @@ from __future__ import annotations
 import io
 from collections.abc import Sequence
 
-from lxml import etree
+from lxml import etree  # ty: ignore[missing-module-member]  # C extension submodule ty cannot see
 from pypdf import PdfReader, PdfWriter
 
 from tools.rendering.fonts import FONT_FAMILY
@@ -104,7 +104,7 @@ def render_pdf_document(pages: Sequence[tuple[str, str]], *, title: str) -> byte
     writer = PdfWriter()
     for index, (page_title, svg) in enumerate(pages):
         writer.append(PdfReader(io.BytesIO(_svg2pdf(titled_svg(svg, page_title)))))
-        writer.add_outline_item(page_title or f"Page {index + 1}", index)
+        writer.add_outline_item(title=page_title or f"Page {index + 1}", page_number=index)
     writer.add_metadata({"/Title": title, "/Producer": "requirements-api"})
     out = io.BytesIO()
     writer.write(out)

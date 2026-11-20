@@ -207,7 +207,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from lxml import etree
+from lxml import etree  # ty: ignore[missing-module-member]  # C extension submodule ty cannot see
 from pydantic import BaseModel, ConfigDict, Field
 
 from schemas.modeling import (
